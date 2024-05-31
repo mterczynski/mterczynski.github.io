@@ -1,61 +1,24 @@
-// 4th approach: builder class + class with parameter properties
-class CarBuilder {
-    private color?: string;
-    private weight?: number;
-    private price?: number;
-    private brand?: string;
-    private productionYear?: number;
-
-    public setColor(color: string) {
-        this.color = color;
-        return this;
-    }
-
-    public setWeight(weight: number) {
-        this.weight = weight;
-        return this;
-    }
-
-    public setPrice(price: number) {
-        this.price = price;
-        return this;
-    }
-
-    public setBrand(brand: string) {
-        this.brand = brand;
-        return this;
-    }
-
-    public setProductionYear(productionYear: number) {
-        this.productionYear = productionYear;
-        return this;
-    }
-
-    public build() {
-        if (this.weight === undefined) throw new Error("The weight parameter is required");
-        if (this.price === undefined) throw new Error("The price parameter is required");
-        if (this.brand === undefined) throw new Error("The brand parameter is required");
-        if (this.productionYear === undefined) throw new Error("The productionYear parameter is required");
-
-        return new Car(
-            this.weight,
-            this.price,
-            this.brand,
-            this.productionYear,
-            this.color
-        );
-    }
-}
-
-// the exact same class from 2nd example:
+// 1st example: basic class
 class Car {
+    private color: string;
+    private weight: number;
+    private price: number;
+    private brand: string;
+    private productionYear: number;
+
     constructor(
-        private weight: number,
-        private price: number,
-        private brand: string,
-        private productionYear: number,
-        private color: string = "red"
-    ) { }
+        weight: number,
+        price: number,
+        brand: string,
+        productionYear: number,
+        color: string = "red"
+    ) {
+        this.weight = weight;
+        this.price = price;
+        this.brand = brand;
+        this.productionYear = productionYear;
+        this.color = color;
+    }
 
     public getWeight() {
         return this.weight;
@@ -78,11 +41,4 @@ class Car {
     }
 }
 
-const carBuilder = new CarBuilder();
-carBuilder.setWeight(2_000);
-carBuilder.setBrand("Ford");
-carBuilder.setPrice(50_000);
-carBuilder.setProductionYear(2013);
-const car = carBuilder.build();
-
-console.log(car.getColor()); // red
+const car = new Car(2_000, 50_000, "Ford", 2013);
