@@ -1,0 +1,131 @@
+/*--------Color classes: ----------*/
+.red{background-color: red;}
+.yellow{background-color: yellow;}
+.purple{background-color: purple;}
+.white{background-color: white;}
+.cyan{background-color: cyan;}
+.dodgerblue{background-color: dodgerblue;}
+.lightgreen{background-color: lightgreen;}
+.chartreuse{background-color: chartreuse;}
+
+*{
+    margin:0;
+    padding:0;
+    font-family: Calibri;
+}
+body{
+    overflow:hidden;
+}
+.leftColumn{
+    left:0;
+    position: absolute;
+    width:40%;
+    height:100%;
+}
+.middleColumn{
+    position: absolute;
+    left:40%;
+    height:100%;
+}
+.rightColumn{
+    right:0;
+    position: absolute;
+    width:40%;
+    height:100%;
+}
+#sizeChoose{
+    position: absolute;
+    top:1vh;
+    left:5vw;
+}
+
+table tr td{
+    padding: 3vmin;
+}
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+td{
+    padding: 1vmin;
+    border-right: 0.1vmin solid black;
+    border-bottom: 0.1vmin solid black;
+}
+
+/*---- Level size input: ---*/
+#sizeChoose {
+    font-size: 1.5em;
+    width: 8vw;
+    max-width: 150px;
+    min-width: 90px;
+    max-width: 200px;
+}
+
+/*------ Buttons: ----------*/
+#buttons {
+    position: absolute;
+    left:5vw;
+    top:10vh;
+}
+
+button {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    border: 3px solid gray;
+    border-radius: 100000vw;
+    width: 8vw;
+    max-width: 150px;
+    min-width: 90px;
+}
+
+button.active {
+    border: 3px solid black;
+}
+
+#bt1{
+    background-color:lightgreen;
+}
+#bt2{
+    background-color:red;
+}
+#bt3{
+    background-color:dodgerblue;
+}
+#bt4{
+    background-color:yellow;
+}
+#bt5{
+    background-color:purple;
+}
+#bt6{
+    background-color:cyan;
+}
+#bt7{
+    background-color:white;
+}
+#bt8{
+    background-color: chartreuse;
+}
+
+/*------ Right column: ----------*/
+#JSON{
+    position: absolute;
+    left:10%;
+    top:5%;
+    width:90%;
+    height:80%;
+    background-color:black;
+    color:white;
+    overflow: auto;
+}
+#reloadJSON{
+    position: absolute;
+    cursor: pointer;
+    bottom: 5%;
+    width: 80%;
+    border-radius: 1000vw;
+    left:12.5%;
+    border: 0.3vmin solid gray;
+    background-color:lightgray;
+    text-align: center;
+}
