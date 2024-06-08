@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "email-validator": "./email-validator.js",
+    "is-ip": "./is-ip.js",
+    "is-uuid": "./is-uuid.js",
+    "joi": "./joi.js",
+    "prismjs": "./prismjs.js"
+  }
+}
