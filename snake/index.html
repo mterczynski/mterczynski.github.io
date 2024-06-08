@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Snake - DOM</title>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: Calibri, "Trebuchet MS", sans-serif;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .main-container {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+      }
+
+      .row {
+        display: flex;
+      }
+
+      .tile {
+        display: inline-block;
+        border-left: 1px solid rgba(0, 0, 0, 0.17);
+        border-top: 1px solid rgba(0, 0, 0, 0.17);
+        width: 40px;
+        height: 40px;
+      }
+
+      .row :first-child {
+        border-left: none;
+      }
+
+      #board {
+        border: 1px solid rgb(0, 0, 0);
+      }
+
+      #board :first-child .tile {
+        border-top: none;
+      }
+
+      .apple {
+        background: red;
+      }
+
+      .snake {
+        background: green;
+      }
+
+      .controls {
+        margin-top: 20px;
+        font-size: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="main-container">
+      <div id="board"></div>
+
+      <div class="controls">
+        <h3>Controls:</h3>
+        <ul>
+          <li>W - move up</li>
+          <li>A - move left</li>
+          <li>S - move down</li>
+          <li>D - move right</li>
+        </ul>
+      </div>
+    </main>
+
+    <script src="main.js"></script>
+    <script src="leaderboards.js"></script>
+  </body>
+</html>
