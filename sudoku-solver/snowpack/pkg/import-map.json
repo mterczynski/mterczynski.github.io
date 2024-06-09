@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "joi": "./joi.js",
+    "json5": "./json5.js",
+    "lodash": "./lodash.js"
+  }
+}
