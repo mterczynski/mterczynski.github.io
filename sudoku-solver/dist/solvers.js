@@ -1,4 +1,4 @@
-import {range} from "../_snowpack/pkg/lodash.js";
+import {range} from "../snowpack/pkg/lodash.js";
 import {State} from "./state.js";
 import {
   boardSize,

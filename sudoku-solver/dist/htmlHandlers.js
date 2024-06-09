@@ -1,5 +1,5 @@
-import Joi from "../_snowpack/pkg/joi.js";
-import JSON5 from "../_snowpack/pkg/json5.js";
+import Joi from "../snowpack/pkg/joi.js";
+import JSON5 from "../snowpack/pkg/json5.js";
 import {
   provideSolution,
   solve3x3Squares,

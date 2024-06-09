@@ -1,5 +1,5 @@
 import {SchemaGenerator} from "./SchemaGenerator.js";
-import Prism from "../_snowpack/pkg/prismjs.js";
+import Prism from "../snowpack/pkg/prismjs.js";
 function updateOutputValue() {
   const invalidTextareaClass = "input-textarea-invalid";
   try {

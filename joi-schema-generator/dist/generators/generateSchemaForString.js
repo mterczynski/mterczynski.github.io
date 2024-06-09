@@ -1,6 +1,6 @@
-import isUUID from "../../_snowpack/pkg/is-uuid.js";
-import * as EmailValidator from "../../_snowpack/pkg/email-validator.js";
-import isIp from "../../_snowpack/pkg/is-ip.js";
+import isUUID from "../../snowpack/pkg/is-uuid.js";
+import * as EmailValidator from "../../snowpack/pkg/email-validator.js";
+import isIp from "../../snowpack/pkg/is-ip.js";
 import {isIsoDate} from "../isIsoDate.js";
 export function generateSchemaForString(value, {
   makeFieldsRequired = true

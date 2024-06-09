@@ -1,4 +1,4 @@
-import {range} from "../_snowpack/pkg/lodash.js";
+import {range} from "../snowpack/pkg/lodash.js";
 export const boardSize = 9;
 export function getColumn(board, columnIndex) {
   return range(0, boardSize).map((rowIndex) => board[rowIndex][columnIndex]);

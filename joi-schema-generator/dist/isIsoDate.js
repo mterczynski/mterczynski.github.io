@@ -1,4 +1,4 @@
-import Joi from "../_snowpack/pkg/joi.js";
+import Joi from "../snowpack/pkg/joi.js";
 export function isIsoDate(value) {
   try {
     Joi.attempt(value, Joi.string().isoDate().required()) ? `.isoDate()` : "";
