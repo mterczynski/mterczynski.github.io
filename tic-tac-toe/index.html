@@ -101,23 +101,35 @@
         let winner = null;
         let isGameOver = false;
 
-        const rows = [
-          [0, 1, 2],
-          [3, 4, 5],
-          [6, 7, 8],
-        ];
-        const columns = [
-          [0, 3, 6],
-          [1, 4, 7],
-          [2, 5, 8],
-        ];
-        const diagonals = [
-          [0, 4, 8],
-          [2, 4, 6],
-        ];
-        const winningLines = [...rows, ...columns, ...diagonals].map((line) =>
-          line.map((index) => board[index])
-        );
+        const boardSize = 3;
+        const rows = [];
+        for (let rowIndex = 0; rowIndex < boardSize; rowIndex++) {
+          let row = [];
+          for (let columnIndex = 0; columnIndex < boardSize; columnIndex++) {
+            row.push(board[rowIndex][columnIndex]);
+          }
+          rows.push(row);
+        }
+
+        const columns = [];
+        for (let columnIndex = 0; columnIndex < boardSize; columnIndex++) {
+          let column = [];
+          for (let rowIndex = 0; rowIndex < boardSize; rowIndex++) {
+            column.push(board[rowIndex][columnIndex]);
+          }
+          columns.push(column);
+        }
+
+        const leftDiagonal = [];
+        const rightDiagonal = [];
+        for (let rowIndex = 0; rowIndex < boardSize; rowIndex++) {
+          leftDiagonal.push(board[rowIndex][columnIndex]);
+          rightDiagonal.push(
+            board[boardSize - 1 - rowIndex][boardSize - 1 - columnIndex]
+          );
+        }
+
+        const winningLines = [...rows, ...columns, leftDiagonal, rightDiagonal];
 
         const stringifiedLines = winningLines.map((line) =>
           line.map((tile) => tile.innerHTML).join("")
