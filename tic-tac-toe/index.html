@@ -1,0 +1,157 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic tac toe</title>
+
+    <style>
+      .row {
+        display: flex;
+      }
+
+      .tile {
+        height: 200px;
+        width: 200px;
+        border-left: 1px solid black;
+        border-bottom: 1px solid black;
+
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        font-size: 100px;
+        text-align: center;
+        line-height: 200px;
+        user-select: none;
+        cursor: pointer;
+      }
+
+      .board {
+        border-top: 1px solid black;
+        border-right: 1px solid black;
+      }
+
+      .board {
+        border-top: 1px solid black;
+        border-right: 1px solid black;
+        width: max-content;
+      }
+
+      .resetButton {
+        font-size: 24px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="board">
+      <div class="row">
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+      </div>
+      <div class="row">
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+      </div>
+      <div class="row">
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+      </div>
+    </div>
+
+    <button id="resetButton" class="resetButton">Reset</button>
+
+    <script>
+      // Object.freeze is optional but it will ensure that the `players` object is read-only
+      const players = Object.freeze({
+        x: "X",
+        o: "O",
+      });
+      let currentPlayer = players.x;
+      const tiles = document.querySelectorAll(".tile");
+
+      tiles.forEach((tile) => {
+        tile.addEventListener("click", () => {
+          if (
+            tile.innerHTML === players.x ||
+            tile.innerHTML === players.o ||
+            checkGameOver().isGameOver
+          ) {
+            return;
+          }
+
+          tile.innerHTML = currentPlayer;
+          currentPlayer = currentPlayer === players.x ? players.o : players.x;
+
+          // check game state after making a move:
+          const { isGameOver, winner, isGameDrawn } = checkGameOver();
+
+          if (winner) {
+            alert(`Game won by ${winner}`);
+          } else if (isGameDrawn) {
+            alert(`Game drawn`);
+          }
+        });
+      });
+
+      function checkGameOver() {
+        const board = Array.from(document.querySelectorAll(".tile"));
+        let winner = null;
+        let isGameOver = false;
+
+        const rows = [
+          [0, 1, 2],
+          [3, 4, 5],
+          [6, 7, 8],
+        ];
+        const columns = [
+          [0, 3, 6],
+          [1, 4, 7],
+          [2, 5, 8],
+        ];
+        const diagonals = [
+          [0, 4, 8],
+          [2, 4, 6],
+        ];
+        const winningLines = [...rows, ...columns, ...diagonals].map((line) =>
+          line.map((index) => board[index])
+        );
+
+        const stringifiedLines = winningLines.map((line) =>
+          line.map((tile) => tile.innerHTML).join("")
+        );
+
+        for (const line of stringifiedLines) {
+          if (line === "XXX") {
+            winner = players.x;
+            break;
+          }
+          if (line === "OOO") {
+            winner = players.o;
+            break;
+          }
+        }
+
+        const isGameDrawn = winner === null && isBoardFull(board);
+        isGameOver = winner !== null || isGameDrawn;
+
+        return { isGameOver, winner, isGameDrawn };
+      }
+
+      function isBoardFull(board) {
+        return board.every((tile) =>
+          [players.x, players.o].includes(tile.innerHTML)
+        );
+      }
+
+      document.querySelector("#resetButton").addEventListener("click", () => {
+        currentPlayer = players.x;
+        tiles.forEach((tile) => {
+          tile.innerHTML = "";
+        });
+      });
+    </script>
+  </body>
+</html>
