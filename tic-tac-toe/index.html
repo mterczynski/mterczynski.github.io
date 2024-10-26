@@ -97,7 +97,9 @@
       });
 
       function checkGameOver() {
-        const board = Array.from(document.querySelectorAll(".tile"));
+        const board = Array.from(document.querySelectorAll(".row")).map((row) =>
+          Array.from(row.children)
+        );
         let winner = null;
         let isGameOver = false;
 
@@ -123,9 +125,9 @@
         const leftDiagonal = [];
         const rightDiagonal = [];
         for (let rowIndex = 0; rowIndex < boardSize; rowIndex++) {
-          leftDiagonal.push(board[rowIndex][columnIndex]);
+          leftDiagonal.push(board[rowIndex][rowIndex]);
           rightDiagonal.push(
-            board[boardSize - 1 - rowIndex][boardSize - 1 - columnIndex]
+            board[boardSize - 1 - rowIndex][boardSize - 1 - rowIndex]
           );
         }
 
