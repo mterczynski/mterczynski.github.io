@@ -10,6 +10,7 @@ const arrow_side_1 = document.querySelector(".arrow-aside_1");
 const arrow_side_2 = document.querySelector(".arrow-aside_2");
 console.log(arrow_up);
 const board = document.getElementById("board");
+const localStorageScoreKey = "snake-dom-best-score";
 
 let snake = getNewSnake();
 let apple = getNewApple(snake);
@@ -17,6 +18,7 @@ let nextSnakeDirection = SNAKE_DIRECTIONS.DOWN;
 let previousSnakeDirection = SNAKE_DIRECTIONS.DOWN;
 let wasAppleEatenThisTurn = false;
 let score = 0;
+let bestScore = localStorage.getItem(localStorageScoreKey) || 0;
 
 function restartBoard() {
   board.innerHTML = "";
@@ -60,11 +62,17 @@ function getNewSnake() {
 function restartGame() {
   restartBoard();
   score = 0;
-  document.getElementById("score").innerHTML = score;
+  updateScores();
   snake = getNewSnake();
   nextSnakeDirection = SNAKE_DIRECTIONS.DOWN;
   previousSnakeDirection = SNAKE_DIRECTIONS.DOWN;
   apple = getNewApple(snake);
+}
+
+function updateScores() {
+  document.getElementById("score").innerHTML = score;
+  document.getElementById("best-score").innerHTML = bestScore;
+  localStorage.setItem(localStorageScoreKey, bestScore);
 }
 
 function addKeyHandlers() {
@@ -155,7 +163,8 @@ function checkSnakeHeadToAppleCollision() {
   if (snake[0].x === apple.x && snake[0].y === apple.y) {
     wasAppleEatenThisTurn = true;
     score++;
-    document.getElementById("score").innerHTML = score;
+    bestScore = Math.max(bestScore, score);
+    updateScores();
     apple = getNewApple(snake);
   }
 }
