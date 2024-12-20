@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Snake - DOM</title>
-    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <style>
       * {
         margin: 0;
@@ -60,24 +59,120 @@
         margin-top: 20px;
         font-size: 1em;
       }
+      .arrow_up {
+        position: relative;
+        top: -13px;
+        cursor: pointer;
+      }
+      .icon_move {
+        top: 1rem;
+        display: none;
+        position: relative;
+      }
+      .main {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .arrow-aside_1 {
+        position: relative;
+        top: -4rem;
+        right: 2.4rem;
+        cursor: pointer;
+      }
+      .arrow-aside_2 {
+        position: relative;
+        top: -6.6rem;
+        cursor: pointer;
+        left: 2.2rem;
+      }
+      .arrow_down {
+        position: relative;
+        top: 1rem;
+        cursor: pointer;
+      }
+
+      @media screen and (max-width: 620px) {
+        .main {
+          flex-direction: column-reverse;
+          align-items: center;
+
+          position: relative;
+        }
+        .icon_move {
+          display: block;
+        }
+        #board {
+          width: 80%;
+        }
+        .center {
+          display: flex;
+          justify-content: center;
+        }
+        .cover {
+          display: flex;
+          justify-content: center;
+        }
+        .controls {
+          margin-top: -4rem;
+          display: none;
+        }
+        .main {
+          margin-top: 1rem;
+        }
+      }
+      @media screen and (max-width: 850px) {
+        .icon_move {
+          display: block;
+        }
+      }
     </style>
   </head>
   <body>
     <main class="main-container">
-      <div id="board"></div>
-
-      <div class="controls">
-        <h3>Controls:</h3>
-        <ul>
-          <li>W - move up</li>
-          <li>A - move left</li>
-          <li>S - move down</li>
-          <li>D - move right</li>
-        </ul>
+      <div class="center">
+        <div id="board"></div>
+      </div>
+      <div class="cover">
+        <section class="main">
+          <div class="controls">
+            <h3>Controls:</h3>
+            <ul>
+              <li>W, &uarr; - move up</li>
+              <li>A, &larr; - move left</li>
+              <li>S, &darr; - move down</li>
+              <li>D, &rarr; - move right</li>
+            </ul>
+          </div>
+          <div class="icon_move">
+            <div class="arrow_up">
+              <img
+                src="./img/arrow_upward_36dp_5F6368_FILL0_wght400_GRAD0_opsz40.svg"
+                alt=""
+              />
+            </div>
+            <div class="arrow_down">
+              <img
+                src="./img/arrow_downward_36dp_5F6368_FILL0_wght400_GRAD0_opsz40.svg"
+                alt=""
+              />
+            </div>
+            <main class="side">
+              <div class="arrow-aside_1">
+                <img
+                  src="./img/arrow_back_36dp_5F6368_FILL0_wght400_GRAD0_opsz40.svg"
+                  alt=""
+                />
+              </div>
+              <div class="arrow-aside_2">
+                <img src="./img/side_right.svg" alt="" />
+              </div>
+            </main>
+          </div>
+        </section>
       </div>
     </main>
 
     <script src="main.js"></script>
-    <script src="leaderboards.js"></script>
   </body>
 </html>
