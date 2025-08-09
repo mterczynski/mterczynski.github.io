@@ -13,10 +13,6 @@ body {
   background: #e4eef7;
 }
 
-.nav-icon-wrapper {
-  min-width: 14px;
-}
-
 /* view */
 .view {
   display: flex;
