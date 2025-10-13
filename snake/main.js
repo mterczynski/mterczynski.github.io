@@ -8,7 +8,6 @@ const arrow_up = document.querySelector(".arrow_up");
 const arrow_down = document.querySelector(".arrow_down");
 const arrow_side_1 = document.querySelector(".arrow-aside_1");
 const arrow_side_2 = document.querySelector(".arrow-aside_2");
-console.log(arrow_up);
 const board = document.getElementById("board");
 const localStorageScoreKey = "snake-dom-best-score";
 
@@ -75,35 +74,49 @@ function updateScores() {
   localStorage.setItem(localStorageScoreKey, bestScore);
 }
 
+function onLeftKeyPressed() {
+  if(previousSnakeDirection !== SNAKE_DIRECTIONS.RIGHT)
+    nextSnakeDirection = SNAKE_DIRECTIONS.LEFT;
+}
+
+function onRightKeyPressed() {
+  if(previousSnakeDirection !== SNAKE_DIRECTIONS.LEFT)
+    nextSnakeDirection = SNAKE_DIRECTIONS.RIGHT;
+}
+
+function onUpKeyPressed() {
+  if(previousSnakeDirection !== SNAKE_DIRECTIONS.DOWN)
+    nextSnakeDirection = SNAKE_DIRECTIONS.UP;
+}
+
+function onDownKeyPressed() {
+  if(previousSnakeDirection !== SNAKE_DIRECTIONS.UP)
+    nextSnakeDirection = SNAKE_DIRECTIONS.DOWN;
+}
+
 function addKeyHandlers() {
   document.addEventListener("keydown", ({ key }) => {
     const upperCaseKey = key.toUpperCase();
 
     if (
-      (upperCaseKey === "A" || key === "ArrowLeft") &&
-      previousSnakeDirection !== SNAKE_DIRECTIONS.RIGHT
+      (upperCaseKey === "A" || key === "ArrowLeft")
     ) {
-      nextSnakeDirection = SNAKE_DIRECTIONS.LEFT;
+      this.onLeftKeyPressed();
     } else if (
-      (upperCaseKey === "W" || key === "ArrowUp") &&
-      previousSnakeDirection !== SNAKE_DIRECTIONS.DOWN
+      (upperCaseKey === "W" || key === "ArrowUp")
     ) {
-      nextSnakeDirection = SNAKE_DIRECTIONS.UP;
+      this.onUpKeyPressed();
     } else if (
-      (upperCaseKey === "S" || key === "ArrowDown") &&
-      previousSnakeDirection !== SNAKE_DIRECTIONS.UP
+      (upperCaseKey === "S" || key === "ArrowDown")
     ) {
-      nextSnakeDirection = SNAKE_DIRECTIONS.DOWN;
+      this.onDownKeyPressed();
     } else if (
-      (upperCaseKey === "D" || key === "ArrowRight") &&
-      previousSnakeDirection !== SNAKE_DIRECTIONS.LEFT
+      (upperCaseKey === "D" || key === "ArrowRight")
     ) {
-      nextSnakeDirection = SNAKE_DIRECTIONS.RIGHT;
+      this.onRightKeyPressed();
     }
   });
 }
-
-// arrow
 
 function addArrowClickHandlers() {
   arrow_up.addEventListener("click", () => {
@@ -200,6 +213,64 @@ function renderApple() {
   appleTile.classList.add("apple");
 }
 
+function addGamePadControls() {
+  window.addEventListener("gamepadconnected", (e) => {
+    const index = e.gamepad.index;
+    
+    function loop() {
+      const gp = navigator.getGamepads()[index];
+      if (!gp) return requestAnimationFrame(loop);
+
+      // XYBA buttons
+      if (gp.buttons[0].pressed) this.onDownKeyPressed(); // A
+      if (gp.buttons[1].pressed) this.onRightKeyPressed(); // B
+      if (gp.buttons[2].pressed) this.onLeftKeyPressed(); // X
+      if (gp.buttons[3].pressed) this.onUpKeyPressed(); // Y
+
+      // Directional Pad (D-Pad)
+      if (gp.buttons[13].pressed) this.onDownKeyPressed();
+      if (gp.buttons[15].pressed) this.onRightKeyPressed();
+      if (gp.buttons[14].pressed) this.onLeftKeyPressed();
+      if (gp.buttons[12].pressed) this.onUpKeyPressed();
+
+      // Bumpers and triggers
+      if (gp.buttons[5].pressed) this.onDownKeyPressed();
+      if (gp.buttons[7].pressed) this.onRightKeyPressed();
+      if (gp.buttons[6].pressed) this.onLeftKeyPressed();
+      if (gp.buttons[4].pressed) this.onUpKeyPressed();
+
+      // Thumbsticks: handle both left (axes 0,1) and right (axes 2,3) with one block
+      // minimum magnitude (length) of thumbstick vector to consider it a deliberate input
+      const STICK_DEADZONE = 0.4;
+      [[0, 1], [2, 3]].forEach(([ax, ay]) => {
+        if (typeof gp.axes[ax] === 'number' && typeof gp.axes[ay] === 'number') {
+          const sx = gp.axes[ax];
+          const sy = gp.axes[ay];
+          const mag = Math.sqrt(sx * sx + sy * sy);
+          if (mag > STICK_DEADZONE) {
+            // angle in radians (y typically -1 up on gamepads)
+            const ang = Math.atan2(sy, sx);
+            // Map angle to 4 directions
+            if (ang >= -Math.PI / 4 && ang <= Math.PI / 4) {
+              onRightKeyPressed();
+            } else if (ang > Math.PI / 4 && ang < (3 * Math.PI) / 4) {
+              onDownKeyPressed();
+            } else if (ang >= (3 * Math.PI) / 4 || ang <= -(3 * Math.PI) / 4) {
+              onLeftKeyPressed();
+            } else {
+              onUpKeyPressed();
+            }
+          }
+        }
+      });
+
+      requestAnimationFrame(loop);
+    }
+
+    loop();
+  });
+}
+
 function render() {
   clearBoard();
   renderApple();
@@ -217,3 +288,4 @@ restartGame();
 setInterval(gameLoop, 1000 / 10);
 addKeyHandlers();
 addArrowClickHandlers();
+addGamePadControls();
