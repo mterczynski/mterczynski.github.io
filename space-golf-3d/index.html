@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<base href="./" />
+	<title>Space Golf 3D</title>
+	<div>
+		<audio id="audio-ball-hit">
+			<!-- Taken from https://freesound.org/people/EminYILDIRIM/sounds/536104/ -->
+			<source src="./assets/audio/swordHit.wav" type="audio/mpeg" />
+		</audio>
+
+		<audio id="audio-ball-flight-start">
+			<!-- Taken from https://freesound.org/people/DrMaysta/sounds/402994/ -->
+			<source src="./assets/audio/golfClubHit.wav" type="audio/mpeg" />
+		</audio>
+
+		<audio id="audio-ping-pong-ball-hit">
+			<!-- Taken from https://freesound.org/people/michorvath/sounds/269718/ -->
+			<source src="./assets/audio/pingPongBallHit.wav" type="audio/mpeg" />
+		</audio>
+
+		<audio id="audio-ambient" loop>
+			<!-- Taken from https://soundraw.io/edit_music?m=65c50b4a8fef3a0012ddd47c -->
+			<source src="./assets/audio/very_ambient.mp3" type="audio/mpeg" />
+		</audio>
+	</div>
+  <script type="module" crossorigin src="/assets/index-C3IEsIj5.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BVMi7BdY.css">
+</head>
+
+<body>
+	<canvas id="mainCanvas"></canvas>
+	<div class="infoTab" id="infoTab">
+		<pre class="infoTab__text" id="infoTab__text"></pre>
+	</div>
+</body>
+
+</html>
