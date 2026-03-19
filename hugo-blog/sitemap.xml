@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.mter.pl/blog/categories/</loc>
+    <lastmod>2024-07-01T10:34:02+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mter.pl/blog/categories/gamedev-javascript-html-css-tutorial/</loc>
+    <lastmod>2024-07-01T10:34:02+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mter.pl/blog/post/2024-07-01-building-tic-tac-toe-javascript/</loc>
+    <lastmod>2024-07-01T10:34:02+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mter.pl/blog/</loc>
+    <lastmod>2024-07-01T10:34:02+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mter.pl/blog/post/</loc>
+    <lastmod>2024-07-01T10:34:02+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mter.pl/blog/post/2024-06-20-awesome-ai-tools/</loc>
+    <lastmod>2024-06-20T22:34:02+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mter.pl/blog/categories/ai/</loc>
+    <lastmod>2024-06-20T22:34:02+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mter.pl/blog/post/2024-02-28-builder-design-pattern/</loc>
+    <lastmod>2024-02-28T22:34:02+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mter.pl/blog/categories/design-patterns-typescript/</loc>
+    <lastmod>2024-02-28T22:34:02+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mter.pl/blog/about/</loc>
+  </url><url>
+    <loc>https://www.mter.pl/blog/tags/</loc>
+  </url>
+</urlset>
