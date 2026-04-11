@@ -53,4 +53,3 @@ export const initCertifications = () => {
     certificationSection.appendChild(certification_item);
   });
 };
-
