@@ -1,0 +1,80 @@
+import { commercialProjects } from "../data/commercialProjectData.js";
+import { chunkArray } from "../utils/grid.js";
+import { t } from "../utils/language.js";
+
+export class CommercialProject extends HTMLElement {
+  constructor() {
+    super();
+    this.t = t();
+  }
+
+  connectedCallback() {
+    document.title = this.t.title;
+    const columns = chunkArray(commercialProjects, [2, 2, 2, 1]);
+
+    this.innerHTML = `   <div style="margin-top: 5rem" class="ui container">  <h2>${this.t.projects.commercial}</h2>
+      <div class="ui four column doubling stackable grid container"> 
+        ${columns
+          .map(
+            (col) => `
+              <div class="column">
+                ${col
+                  .map(
+                    (project) => `
+                  <div class="ui card">
+                    <div class="ui slide masked reveal image">
+                      <img
+                        class="card-triangle"
+                        src="${project.companylogo}"
+                        alt="${project.companyName}"
+                        title="${project.companyName}"
+                        loading="lazy"
+                        decoding="async"
+                        width="80"
+                        height="80"
+                      />
+                      <img src="${project.image}" class="visible content" alt="${project.alt}" />
+
+                      <div class="hidden content linkButtons">
+                        ${project.links
+                          .map(
+                            (link) => `
+                          <a class="projectLink" href="${link.url}" target="_blank" rel="noopener noreferrer">
+                            <button class="ui blue button linkButton">
+                              ${link.name === "play" ? "Play" : "Website"}
+                            </button>
+                          </a>
+                        `,
+                          )
+                          .join("")}
+                      </div>
+                    </div>
+
+                    <div class="content">
+                      <div class="header">${project.title}</div>
+                      <div class="meta">${this.getProjectDescription(project)}</div>
+                    </div>
+
+                    <div class="extra content">
+                      <i class="hashtag icon"></i>
+                      ${project.tech.join(", ")}
+                    </div>
+
+                  </div>
+                `,
+                  )
+                  .join("")}
+            </div>
+          `).join("")}
+      </div>
+        
+ 
+    </div>`;
+  }
+
+  getProjectDescription(project) {
+    return this.t.projectDescriptions?.commercial?.[project.id] ?? project.description;
+  }
+}
+
+customElements.define("app-commercial", CommercialProject);
