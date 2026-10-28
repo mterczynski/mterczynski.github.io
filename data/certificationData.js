@@ -24,6 +24,23 @@ export const certificationData = {
       confirmationLink:
         "https://www.credly.com/badges/8b28bb47-aaa5-4986-872b-afa51fe70bd0/",
     },
+    {
+      title: "Gemini Enterprise Agent Development",
+      img: "./assets/certificate/gemini_agent_development.png",
+      subtitle:
+        "Certified Partner Specialist: Gemini Enterprise Agent Development",
+      link: "https://rsvp.withgoogle.com/events/partner-learning/cps",
+      confirmationLink:
+        "https://www.credly.com/badges/a490b94c-448e-4969-8cd2-4de707102a45",
+    },
+    {
+      title: "OpenAI Cyber Solutions Practitioner",
+      img: "./assets/certificate/openai_cyber_solutions_practitioner.webp",
+      subtitle: "OpenAI Partner Network: Cyber Solutions Practitioner",
+      link: "https://openai.com/business/partners/",
+      confirmationLink:
+        "https://oaipartnernetwork.credential.net/ba85e935-087d-4600-83cb-88a923e4f349",
+    },
   ],
   Cloud: [
     {
@@ -49,6 +66,14 @@ export const certificationData = {
       link: "https://developer.hashicorp.com/certifications/infrastructure-automation",
       confirmationLink:
         "https://www.credly.com/badges/e3db2831-b81c-46a7-84b0-dbcb48e87883",
+    },
+    {
+      title: "Gemini Enterprise Deployment",
+      img: "./assets/certificate/gemini_deployment_cert.png",
+      subtitle: "Certified Partner Specialist: Gemini Enterprise Deployment",
+      link: "https://rsvp.withgoogle.com/events/partner-learning/cps",
+      confirmationLink:
+        "https://www.credly.com/badges/1753c157-dec1-4b03-a80d-67b43af68a4a",
     },
   ],
 };
